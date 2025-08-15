@@ -1,0 +1,75 @@
+# =========================
+# Spring Boot / Java (springapp)
+# =========================
+springapp/target/
+springapp/.mvn/wrapper/maven-wrapper.jar
+!springapp/**/src/main/**/target/
+!springapp/**/src/test/**/target/
+
+# STS
+springapp/.apt_generated
+springapp/.classpath
+springapp/.factorypath
+springapp/.project
+springapp/.settings
+springapp/.springBeans
+springapp/.sts4-cache
+
+# NetBeans
+springapp/nbproject/private/
+springapp/nbbuild/
+springapp/dist/
+springapp/nbdist/
+springapp/.nb-gradle/
+springapp/build/
+!springapp/**/src/main/**/build/
+!springapp/**/src/test/**/build/
+
+# =========================
+# Angular / Node (angularapp)
+# =========================
+angularapp/dist
+angularapp/tmp
+angularapp/out-tsc
+angularapp/node_modules
+
+# profiling files
+angularapp/chrome-profiler-events*.json
+angularapp/speed-measure-plugin*.json
+
+# misc
+angularapp/.sass-cache
+angularapp/connect.lock
+angularapp/coverage
+angularapp/libpeerconnection.log
+angularapp/npm-debug.log
+angularapp/yarn-error.log
+angularapp/testem.log
+angularapp/typings
+
+# =========================
+# IDE / Editor settings (common)
+# =========================
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# =========================
+# System Files
+# =========================
+.DS_Store
+Thumbs.db
