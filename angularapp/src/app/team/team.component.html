@@ -9,5 +9,5 @@
 <form #teamForm="ngForm">
   <input type="text" [(ngModel)]="newTeam.name" placeholder="Team Name" name="teamName">
   <input type="number" [(ngModel)]="newTeam.maximumBudget" placeholder="Maximum Budget" name="teamBudget">
-  <button type="button" [disabled]="" (click)="createTeam()">{{ newTeam.id ? 'Update' : 'Create' }}</button>
+  <button type="button" [disabled]="teamForm.invalid" (click)="createTeam()">{{ newTeam.id ? 'Update' : 'Create' }}</button>
 </form>

@@ -1,1 +1,36 @@
-<p>player works!</p>
+<h2 class="">Player List</h2>
+<ul class="">
+    <li *ngFor="let p of players" class="">
+        {{ p.name }} (Age: {{ p.age }} Category: {{ p.category }} Bidding Price: {{ p.biddingPrice }})
+        <button class="" (click)="onEditPlayer(p)">Edit</button>
+        <button class="" (click)="onDeletePlayer(p.id)">Delete</button>
+    </li>
+</ul>
+
+
+<div *ngIf="editedPlayer" class="">
+    <h3 class="">Edit Player</h3>
+    <form #playerEditForm="ngForm">
+        <label class="">Edit Player</label>
+        <input class="" [(ngModel)]="editedPlayer.name" placeholder="Player Name" />
+        <input type="number" class="" [(ngModel)]="editedPlayer.age" placeholder="Age" />
+        <input class="" [(ngModel)]="editedPlayer.category" placeholder="Category" />
+        <input type="number" class="" [(ngModel)]="editedPlayer.biddingPrice" placeholder="Bidding Price" />
+        <button class="" (click)="onSaveEditedPlayer()" [disabled]="playerEditForm.invalid">Save</button>
+        <button class="" (click)="onCancelEditPlayer()">Cancel</button>
+    </form>
+</div>
+
+<div *ngIf="!editedPlayer" class="">
+    <h3 class="">Create New Player</h3>
+    <form #playerForm="ngForm">
+        <input class="" [(ngModel)]="newPlayer.name" placeholder="Player Name" />
+        <input type="number" class="" [(ngModel)]="newPlayer.age" placeholder="Age" />
+        <input class="" [(ngModel)]="newPlayer.category" placeholder="Category" />
+        <input type="number" class="" [(ngModel)]="newPlayer.biddingPrice" placeholder="Bidding Price" />
+        <div class="">Bidding Price Status: {{ biddingPriceStatus() }}</div>
+        <button class="" [disabled]="playerForm.invalid" (click)="createPlayer()">
+            Create
+        </button>
+    </form>
+</div>

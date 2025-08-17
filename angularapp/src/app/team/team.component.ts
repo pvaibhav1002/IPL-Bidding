@@ -8,7 +8,7 @@ import { Team } from 'src/models/team.model';
 })
 export class TeamComponent implements OnInit {
   teams: Team[] = [];
-  newTeam: Team={};
+  newTeam: Team={name:null,maximumBudget:null};
 
   @Output() editTeamEvent = new EventEmitter<Team>();
   @Output() saveEditedTeamEvent = new EventEmitter<Team>();

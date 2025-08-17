@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { ErrorComponent } from './error/error.component';
 import { AdminComponent } from './admin/admin.component';
 import { PlayerComponent } from './player/player.component';
 import { TeamComponent } from './team/team.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrganizerComponent } from './organizer/organizer.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,15 @@ import { TeamComponent } from './team/team.component';
     ErrorComponent,
     AdminComponent,
     PlayerComponent,
-    TeamComponent
+    TeamComponent,
+    OrganizerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
