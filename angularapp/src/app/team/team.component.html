@@ -1,0 +1,13 @@
+<ul>
+  <li *ngFor="let team of teams">
+    {{ team.name }} (Budget: {{ team.maximumBudget }})
+    <button (click)="onEditTeam(team)">Edit</button>
+    <button (click)="onDeleteTeam(team.id)">Delete</button>
+  </li>
+</ul>
+
+<form #teamForm="ngForm">
+  <input type="text" [(ngModel)]="newTeam.name" placeholder="Team Name" name="teamName">
+  <input type="number" [(ngModel)]="newTeam.maximumBudget" placeholder="Maximum Budget" name="teamBudget">
+  <button type="button" [disabled]="" (click)="createTeam()">{{ newTeam.id ? 'Update' : 'Create' }}</button>
+</form>
