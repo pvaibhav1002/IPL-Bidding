@@ -73,3 +73,6 @@ angularapp/typings
 # =========================
 .DS_Store
 Thumbs.db
+
+angular.md
+*.zip
