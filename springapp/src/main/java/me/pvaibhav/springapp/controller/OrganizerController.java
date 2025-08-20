@@ -21,6 +21,7 @@ public class OrganizerController {
 
     @PostMapping("/assign-player")
     public ResponseEntity<Boolean> assignPlayer(@RequestParam long playerId,@RequestParam long teamId) {
+        System.out.println(playerId+" "+teamId);
         if (!organizerService.assignPlayertoTeam(playerId, teamId)) {
             return ResponseEntity.status(500).body(false);
         }
@@ -30,18 +31,18 @@ public class OrganizerController {
     @GetMapping("/unsold-players")
     public ResponseEntity<List<Player>> getUnsoldPlayers() {
         List<Player> players = organizerService.getUnsoldPlayers();
-        // if (players.isEmpty()) {
-        //     return ResponseEntity.status(500).build();
-        // }
+        if (players.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
         return ResponseEntity.status(200).body(players);
     }
     
     @GetMapping("/sold-players")
     public ResponseEntity<List<Player>> getSoldPlayers() {
         List<Player> players = organizerService.getSoldPlayers();
-        // if (players.isEmpty()) {
-        //     return ResponseEntity.status(500).build();
-        // }
+        if (players.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
         return ResponseEntity.status(200).body(players);
 
     }
@@ -54,7 +55,7 @@ public class OrganizerController {
         return ResponseEntity.status(200).body(true);
     }
 
-    @PutMapping("/player-list/{teamId}")
+    @GetMapping("/player-list/{teamId}")
     public ResponseEntity<List<Player>> getPlayerList(@PathVariable long teamId) {
         List<Player> players = organizerService.getPlayerListByTeamId(teamId);
         if (players.isEmpty()) {

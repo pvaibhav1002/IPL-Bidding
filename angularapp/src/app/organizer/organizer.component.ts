@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Player } from 'src/models/player.model';
 import { Team } from 'src/models/team.model';
+import { OrganizerService } from '../services/organizer.service';
 
 @Component({
   selector: 'app-organizer',
@@ -9,25 +10,31 @@ import { Team } from 'src/models/team.model';
 })
 export class OrganizerComponent implements OnInit {
   teams: Team[] = [];
-  players: Player[] = [];
-  unsoldPlayers:Player[] = [];
-  categories:string[] = ['All', 'Batsman', 'Bowler', 'All-rounder', 'Wicketkeeper'];
+  unsoldPlayers: Player[] = [];
+  categories: string[] = ['All', 'Batsman', 'Bowler', 'All-rounder', 'Wicketkeeper'];
   selectedCategory: string = 'All';
   selectedTeamid: number | null = null;
-  showList:{ [key: number]: boolean } = {};
-  assign={teamid:null,playerid:null};
-  constructor() { }
+  showList: { [key: number]: boolean } = {};
+  constructor(private organizerService: OrganizerService) { }
 
   ngOnInit(): void {
-    this.fetchUnsoldPlayers();
+    this.loadUnsoldPlayers();
+    this.loadTeams();
   }
 
-  fetchUnsoldPlayers(){
-    this.unsoldPlayers = this.players.filter(p => !p.sold);
+  loadUnsoldPlayers(): void {
+    this.organizerService.getUnsoldPlayers().subscribe(players => {
+      this.unsoldPlayers = players;
+    });
   }
 
+  loadTeams(): void {
+    this.organizerService.getTeams().subscribe(teams => {
+      this.teams = teams;
+    });
+  }
   filterByCategory(): Player[] {
-    if (this.selectedCategory='All') {
+    if (this.selectedCategory == 'All') {
       return this.unsoldPlayers;
     }
     return this.unsoldPlayers.filter(p => p.category === this.selectedCategory);
@@ -35,18 +42,36 @@ export class OrganizerComponent implements OnInit {
 
   togglePlayerList(teamid: number): void {
     this.showList[teamid] = !this.showList[teamid];
+    this.getPlayerListInTeam(teamid);
   }
 
-  assignPlayerToTeam(): void {
-    
+  assignPlayerToTeam(playerid: number, teamid: number | null): void {
+    if (!teamid) return;
+    this.organizerService.assignPlayerToTeam({ playerid, teamid }).subscribe(() => {
+      this.unsoldPlayers = this.unsoldPlayers.filter(p => p.id !== playerid);
+      this.getPlayerListInTeam(teamid);
+    });
   }
 
-  getPlayerListInTeam(teamid: number): Player[] {
-    return this.players.filter(p => p.selectedTeamid === teamid && p.sold);
+  getPlayerListInTeam(teamid: number) {
+    console.log("here");
+    this.organizerService.getPlayerListInTeam(teamid).subscribe(players => {
+      this.teams=this.teams.map(t =>
+         t.id === teamid ? { ...t, players: players ?? [] } : t
+      );
+    });
   }
 
-  releasePlayerFromTeam(playerid: number): void {
-    
-    this.fetchUnsoldPlayers();
+
+  releasePlayerFromTeam(playerid: number, teamid: number): void {
+    this.organizerService.releasePlayerFromTeam(playerid).subscribe(() => {
+      this.teams.forEach(team=>{
+        if(team.id===teamid){
+          team.players= team.players.filter(p=>p.id!=playerid);
+        }
+      })
+      this.loadUnsoldPlayers();
+    });
   }
+
 }

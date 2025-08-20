@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Team } from 'src/models/team.model';
 
 @Component({
@@ -7,7 +7,9 @@ import { Team } from 'src/models/team.model';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  teams: Team[] = [];
+  @Input() teams: Team[] = [];
+  @Input() teamSuccessMessage: string="";
+  @Input() editedTeam: Team | null = null;
   newTeam: Team={name:null,maximumBudget:null};
 
   @Output() editTeamEvent = new EventEmitter<Team>();
@@ -15,17 +17,25 @@ export class TeamComponent implements OnInit {
   @Output() cancelEditTeamEvent = new EventEmitter<void>();
   @Output() deleteTeamEvent = new EventEmitter<number>();
   @Output() createTeamEvent = new EventEmitter<Team>();
-
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onEditTeam(team: Team) { this.editTeamEvent.emit(team); }
-  onSaveEditedTeam() { this.saveEditedTeamEvent.emit(); }
-  onCancelEditTeam() { this.cancelEditTeamEvent.emit(); }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['teamSuccessMessage'] && this.teamSuccessMessage) {
+      setTimeout(() => {
+        this.teamSuccessMessage = "";
+      }, 2000);
+    }
+  }
+
+  onEditTeam(team: Team) { this.editTeamEvent.emit(team);} 
+  onSaveEditedTeam() {  if (this.editedTeam) this.saveEditedTeamEvent.emit(this.editedTeam); this.editedTeam=null; }
+  onCancelEditTeam() {this.editedTeam=null; this.cancelEditTeamEvent.emit(); }
   onDeleteTeam(teamid: number) { this.deleteTeamEvent.emit(teamid); }
-  createTeam() { this.createTeamEvent.emit(this.newTeam); }
+  createTeam() { this.createTeamEvent.emit(this.newTeam); this.newTeam.name=null;this.newTeam.maximumBudget=null;}
 
   maxBidStatus() { }
 

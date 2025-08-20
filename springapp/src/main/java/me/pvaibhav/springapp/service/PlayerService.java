@@ -13,5 +13,5 @@ public interface PlayerService {
 
     Player getPlayerById(long playerId);
 
-    boolean deletPlayer(long playerId);
+    boolean deletePlayer(long playerId);
 }

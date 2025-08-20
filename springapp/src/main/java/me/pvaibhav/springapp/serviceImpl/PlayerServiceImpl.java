@@ -25,7 +25,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public boolean deletPlayer(long playerId) {
+    public boolean deletePlayer(long playerId) {
         Optional<Player> optPlayer = playerRepo.findById(playerId);
         if (optPlayer.isPresent()) {
             playerRepo.deleteById(playerId);

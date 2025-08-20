@@ -1,3 +1,4 @@
+
 package me.pvaibhav.springapp.entity;
 
 import jakarta.persistence.*;

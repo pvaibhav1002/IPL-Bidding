@@ -10,27 +10,28 @@
 
 <div *ngIf="editedPlayer" class="">
     <h3 class="">Edit Player</h3>
-    <form #playerEditForm="ngForm">
-        <label class="">Edit Player</label>
-        <input class="" [(ngModel)]="editedPlayer.name" placeholder="Player Name" />
-        <input type="number" class="" [(ngModel)]="editedPlayer.age" placeholder="Age" />
-        <input class="" [(ngModel)]="editedPlayer.category" placeholder="Category" />
-        <input type="number" class="" [(ngModel)]="editedPlayer.biddingPrice" placeholder="Bidding Price" />
-        <button class="" (click)="onSaveEditedPlayer()" [disabled]="playerEditForm.invalid">Save</button>
+    <form #playerEditForm="ngForm" (ngSubmit)="onSaveEditedPlayer()">
+        <input class="" name="playerName" [(ngModel)]="editedPlayer.name" placeholder="Player Name" />
+        <input type="number" name="playerAge" class="" [(ngModel)]="editedPlayer.age" placeholder="Age" />
+        <input class="" name="playerCategory" [(ngModel)]="editedPlayer.category" placeholder="Category" />
+        <input type="number" name="playerPrice" class="" [(ngModel)]="editedPlayer.biddingPrice" placeholder="Bidding Price" />
+        <button class="" type="submit" [disabled]="playerEditForm.invalid">Save</button>
         <button class="" (click)="onCancelEditPlayer()">Cancel</button>
+        <p *ngIf="playerSuccessMessage">{{playerSuccessMessage}}</p>
     </form>
 </div>
 
 <div *ngIf="!editedPlayer" class="">
     <h3 class="">Create New Player</h3>
-    <form #playerForm="ngForm">
-        <input class="" [(ngModel)]="newPlayer.name" placeholder="Player Name" />
-        <input type="number" class="" [(ngModel)]="newPlayer.age" placeholder="Age" />
-        <input class="" [(ngModel)]="newPlayer.category" placeholder="Category" />
-        <input type="number" class="" [(ngModel)]="newPlayer.biddingPrice" placeholder="Bidding Price" />
+    <form #playerForm="ngForm" (ngSubmit)="createPlayer()" >
+        <input class="" name="playerName" [(ngModel)]="newPlayer.name" placeholder="Player Name" />
+        <input type="number" name="playerAge" class="" [(ngModel)]="newPlayer.age" placeholder="Age" />
+        <input class="" name="playerCategory" [(ngModel)]="newPlayer.category" placeholder="Category" />
+        <input type="number" name="playerPrice" class="" [(ngModel)]="newPlayer.biddingPrice" placeholder="Bidding Price" />
         <div class="">Bidding Price Status: {{ biddingPriceStatus() }}</div>
-        <button class="" [disabled]="playerForm.invalid" (click)="createPlayer()">
+        <button class="" [disabled]="playerForm.invalid" type="submit">
             Create
         </button>
+        <p *ngIf="playerSuccessMessage">{{playerSuccessMessage}}</p>
     </form>
 </div>

@@ -10,12 +10,11 @@
 
     <div *ngFor="let p of filterByCategory()" class="">
         {{ p.name }} (Age: {{ p.age }}) - Category: {{ p.category }}
-        <select class="" [(ngModel)]="assign.teamid">
-            <option [ngValue]="0">Select Team</option>
+        <select class="" [(ngModel)]="p.selectedTeamId">
+            <option [ngValue]="null">Select Team</option>
             <option *ngFor="let t of teams" [ngValue]="t.id">{{ t.name }}</option>
         </select>
-        <button class=""
-            (click)="assign = { playerid: p.id, teamid: assign.teamid }; assignPlayerToTeam()">
+        <button (click)="assignPlayerToTeam(p.id, p.selectedTeamId)">
             Assign to Team
         </button>
     </div>
@@ -29,15 +28,30 @@
             <button class="" (click)="togglePlayerList(t.id)">Player List</button>
 
             <div *ngIf="showList[t.id]" class="">
-                <div *ngFor="let p of getPlayerListInTeam(t.id)" class="">
+                <div *ngFor="let p of t.players" class="">
                     <div>Player Name: {{ p.name }}</div>
                     <div>Bidding Price: {{ p.biddingPrice }}</div>
-                    <button class="" (click)="releasePlayerFromTeam(p.id)">
+                    <button class="" (click)="releasePlayerFromTeam(p.id,t.id)">
                         Release Player
                     </button>
                 </div>
-                <div *ngIf="getPlayerListInTeam(t.id).length === 0">No players assigned.</div>
+                <div *ngIf="!t.players || t.players.length === 0">No players assigned.</div>
             </div>
         </li>
     </ol>
 </section>
+
+
+<!-- <div>
+    <ul *ngFor="let travel of travels" >
+        <li>{{travel.destination}}</li>
+        <li>Country: {{travel.country}}</li>
+        <li>Description: {{travel.description}}</li>
+
+
+
+
+        
+        <li>Rating: {{travel.rating}}</li>
+    </ul>
+</div> -->

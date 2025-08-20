@@ -1,13 +1,12 @@
 package me.pvaibhav.springapp.serviceImpl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import me.pvaibhav.springapp.configuration.JwtService;
@@ -18,17 +17,17 @@ import me.pvaibhav.springapp.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
     UserRepo userRepo;
-    BCryptPasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
     JwtService jwtService;
     AuthenticationManager authenticationManager;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo, BCryptPasswordEncoder passwordEncoder,JwtService jwtService,AuthenticationManager authenticationManager) {
+    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, JwtService jwtService,
+            AuthenticationManager authenticationManager) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
-        this.jwtService=jwtService;
-        this.authenticationManager=authenticationManager;
-
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
@@ -47,15 +46,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loginUser(User user) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         if (authentication.isAuthenticated()) {
+            User returnUser = userRepo.findByUsername(user.getUsername()).get();
             String token = jwtService.generateToken(user.getUsername());
-            User returnUser = userRepo.findByUsername(user.getUsername()).get(); 
-            // returnUser.set(token); 
-            System.out.println("Token: " + token);
+            returnUser.setToken(token);
             return returnUser;
         }
         return null;
 
     }
+
 }

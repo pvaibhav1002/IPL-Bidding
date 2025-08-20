@@ -1,12 +1,12 @@
-import { Team } from "./team.model"
+import { Team } from "./team.model";
 
-export interface Player {
-    id?: any
-    name?: string
-    age?: number
-    category?: string
-    biddingPrice?: number
-    selectedTeamid?: any
-    sold?: boolean
-    team?: Team
+export interface Player{
+    id?:any;
+    name?:string;
+    age?:number;
+    category?:string;
+    biddingPrice?:number;
+    selectedTeamId?:any;
+    sold?:boolean;
+    team?:Team;
 }

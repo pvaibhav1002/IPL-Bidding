@@ -56,9 +56,11 @@ public class PlayerController {
     }
     @DeleteMapping("/{playerId}")
     public ResponseEntity<Boolean> deletePlayer(@PathVariable long playerId) {
-        if (!playerService.deletPlayer(playerId)) {
+        boolean delete=playerService.deletePlayer(playerId);
+        if (!delete) {
             return ResponseEntity.status(400).body(false);
         }
-        return ResponseEntity.status(204).body(true);
+        System.out.println(delete);
+        return ResponseEntity.status(200).body(true);
     }
 }

@@ -25,8 +25,9 @@ public class OrganiserServiceImpl implements OrganizerService {
 
     @Override
     public boolean assignPlayertoTeam(long playerId, long teamId) {
-        Player player = playerRepo.findById(teamId).orElse(null);
-        Team team = teamRepo.findById(playerId).orElse(null);
+        Player player = playerRepo.findById(playerId).orElse(null);
+        Team team = teamRepo.findById(teamId).orElse(null);
+        System.out.println(player+" "+team);
         if (player == null || team == null) {
             return false;
         }

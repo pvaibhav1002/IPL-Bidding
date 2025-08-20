@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Player } from 'src/models/player.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { Player } from 'src/models/player.model';
 })
 export class PlayerComponent {
   @Input() players: Player[] = [];
+  @Input() playerSuccessMessage: string = "";
   @Output() createPlayerEvent = new EventEmitter<Player>();
   @Output() editPlayerEvent = new EventEmitter<Player>();
   @Output() saveEditedPlayerEvent = new EventEmitter<Player>();
@@ -14,7 +15,22 @@ export class PlayerComponent {
   @Output() deletePlayerEvent = new EventEmitter<number>();
 
   newPlayer: Player = {};
-  editedPlayer: Player | null = null;
+  @Input() editedPlayer: Player | null = null;
+
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['playerSuccessMessage'] && this.playerSuccessMessage) {
+      setTimeout(() => {
+        this.playerSuccessMessage = "";
+      }, 2000);
+    }
+  }
+
 
   onEditPlayer(player: Player) { this.editPlayerEvent.emit(player); }
   onSaveEditedPlayer() { if (this.editedPlayer) { this.saveEditedPlayerEvent.emit(this.editedPlayer); this.editedPlayer = null; } }
@@ -23,8 +39,6 @@ export class PlayerComponent {
   createPlayer() { if (this.newPlayer.name && this.newPlayer.biddingPrice) { this.createPlayerEvent.emit(this.newPlayer); this.newPlayer = {}; } }
 
   biddingPriceStatus(): string {
-    return this.newPlayer.biddingPrice && this.newPlayer.biddingPrice > 500
-      ? 'High price'
-      : 'Reasonable price';
+    return "";
   }
 }

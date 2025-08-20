@@ -33,7 +33,7 @@ public class UserController {
         if (newuser==null) {
             return ResponseEntity.status(401).body("Invalid Username or Password.");
         }
-        return ResponseEntity.status(200).body(newuser);
+        return ResponseEntity.status(201).body(newuser);
     }
     @GetMapping
     public ResponseEntity<?> getAllUser(){
@@ -41,6 +41,6 @@ public class UserController {
         if (users.isEmpty()) {
             return ResponseEntity.status(404).body("No user found.");
         }
-        return ResponseEntity.status(200).body(users);
+        return ResponseEntity.status(201).body(users);
     }
 }

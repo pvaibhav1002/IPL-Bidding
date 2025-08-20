@@ -19,7 +19,6 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 
     private static final String SECRET = "357638792F423F4428472B4B62506VAIBHAV6D597133743677397A2443264629";
-//    private static final String SECRET = "";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -36,10 +35,10 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                   .setSigningKey(getSignKey())
-                   .build()
-                   .parseClaimsJws(token)
-                   .getBody();
+                .setSigningKey(getSignKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     private Boolean isTokenExpired(String token) {
@@ -58,12 +57,12 @@ public class JwtService {
 
     private String createToken(Map<String, Object> claims, String username) {
         return Jwts.builder()
-                   .setClaims(claims)
-                   .setSubject(username)
-                   .setIssuedAt(new Date(System.currentTimeMillis()))
-                   .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hour
-                   .signWith(getSignKey(), SignatureAlgorithm.HS256)
-                   .compact();
+        .setClaims(claims)
+        .setSubject(username)
+        .setIssuedAt(new Date(System.currentTimeMillis()))
+        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hour
+        .signWith(getSignKey(), SignatureAlgorithm.HS256)
+        .compact();
     }
 
     private Key getSignKey() {

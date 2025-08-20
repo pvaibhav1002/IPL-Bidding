@@ -10,18 +10,22 @@ public class User {
     private String username;
     private String password;
     private String role;
+    @Transient
+    private String token = "";
 
     public User() {
         this.username = "";
         this.password = "";
         this.role = "";
+        this.token = "";
     }
 
-    public User(long userId, String username, String password, String role) {
+    public User(long userId, String username, String password, String role, String token) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.token = token;
     }
 
     public long getUserId() {
@@ -54,6 +58,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }

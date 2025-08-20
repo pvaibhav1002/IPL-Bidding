@@ -9,6 +9,6 @@ public interface UserService {
 
     List<User> getAllUser();
 
-    User loginUser(User user);
+    User    loginUser(User user);
 
 }

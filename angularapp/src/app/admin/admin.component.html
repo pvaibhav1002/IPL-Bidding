@@ -1,1 +1,26 @@
-<p>admin works!</p>
+<div class="">
+    <h1 class="">Admin Panel</h1>
+  
+    <app-team
+      [teams]="teams"
+      [teamSuccessMessage]="teamSuccessMessage"
+      [editedTeam]="editedTeam"
+      (editTeamEvent)="editTeam($event)"
+      (saveEditedTeamEvent)="saveEditedTeam($event)"
+      (cancelEditTeamEvent)="cancelEditTeam()"
+      (deleteTeamEvent)="deleteTeam($event)"
+      (createTeamEvent)="createTeam($event)">
+    </app-team>
+    
+    <app-player
+      [players]="players"
+      [playerSuccessMessage]="playerSuccessMessage"
+      [editedPlayer]="editedPlayer"
+      (editPlayerEvent)="editPlayer($event)"
+      (saveEditedPlayerEvent)="saveEditedPlayer($event)"
+      (cancelEditPlayerEvent)="cancelEditPlayer()"
+      (deletePlayerEvent)="deletePlayer($event)"
+      (createPlayerEvent)="createPlayer($event)">
+    </app-player>
+  </div>
+  
