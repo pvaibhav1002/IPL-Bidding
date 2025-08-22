@@ -21,3 +21,42 @@
 </form>
 
 <p *ngIf="teamSuccessMessage">{{teamSuccessMessage}}</p>
+
+<!-- <div class="team-container">
+  <h2>Team List</h2>
+
+  <ul class="team-list">
+    <li *ngFor="let team of teams">
+      <span class="team-name">{{ team.name }}</span>
+      <span class="team-budget">Budget: {{ team.maximumBudget }}</span>
+      <div class="team-actions">
+        <button (click)="onEditTeam(team)">Edit</button>
+        <button (click)="onDeleteTeam(team.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <div class="team-form">
+    <h3 *ngIf="editedTeam">Edit Team</h3>
+    <h3 *ngIf="!editedTeam">Create Team</h3>
+
+    <form #teamForm="ngForm">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="editedTeam?.name || newTeam.name" 
+               placeholder="Team Name" name="teamName" required>
+      </div>
+      <div class="form-group">
+        <input type="number" [(ngModel)]="editedTeam?.maximumBudget || newTeam.maximumBudget" 
+               placeholder="Maximum Budget" name="teamBudget" required>
+      </div>
+
+      <div class="form-actions">
+        <button *ngIf="!editedTeam" type="button" [disabled]="teamForm.invalid" (click)="createTeam()">+ Create Team</button>
+        <button *ngIf="editedTeam" type="button" [disabled]="teamForm.invalid" (click)="onSaveEditedTeam()">Save Update</button>
+        <button *ngIf="editedTeam" type="button" (click)="onCancelEditTeam()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <p *ngIf="teamSuccessMessage" class="success-message">{{teamSuccessMessage}}</p>
+</div> -->

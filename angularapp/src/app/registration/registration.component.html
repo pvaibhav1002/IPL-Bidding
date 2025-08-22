@@ -1,43 +1,39 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <div class="auth-left">
-      <h2>Register</h2>
-      <form #registration="ngForm" (ngSubmit)="register(registration)">
-        <div class="form-group">
-          <input type="text" placeholder="Username" [(ngModel)]="username" name="username"
-                 #usernameField="ngModel" required>
-          <div class="error" *ngIf="usernameField.invalid && (usernameField.touched || usernameField.dirty)">
-            <div *ngIf="usernameField.errors?.required">Username is required.</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <input type="password" placeholder="Password" [(ngModel)]="password" name="password"
-                 #passwordField="ngModel" required>
-          <div class="error" *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)">
-            <div *ngIf="passwordField.errors?.required">Password is required.</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <select [(ngModel)]="role" name="role">
-            <option value="" disabled selected>Select Role</option>
-            <option value="ADMIN">Admin</option>
-            <option value="ORGANIZER">Organizer</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn">Register</button>
-      </form>
-      <p class="switch">Already have an account? <a routerLink="/login">Login</a></p>
-
-      <p *ngIf="successMessage" style="color:green">{{ successMessage }}</p>
-      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-    </div>
-
-    <div class="auth-right">
-      <h3>JOIN THE LEAGUE!</h3>
-      <p>Create your account and start bidding in the IPL auctions.</p>
+<body>
+<div class="container">
+  <h2>Register</h2>
+  <form #registration="ngForm" (ngSubmit)="register(registration)" >
+    <div class="form-group">
+      <input type="text" [(ngModel)]="username" name="username" id="username"
+      #usernameField="ngModel" required>
+      <label>Username</label> 
+      <div class="error-message" *ngIf="usernameField.invalid && (usernameField.touched || usernameField.dirty)"
+      style="color:red">
+      <div *ngIf="usernameField.errors?.required">Username is required</div>
     </div>
   </div>
+  <div class="form-group">
+    <input type="password" [(ngModel)]="password" name="password" id="password"
+    #passwordField="ngModel" required>
+    <label>Password</label> 
+    <div class="error-message" *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)"
+    style="color:red">
+    <div *ngIf="passwordField.errors?.required">Password is required</div>
+  </div>
 </div>
+<div class="form-group"> 
+  <!-- <label>Role</label>  -->
+  <select [(ngModel)]="role" name="role">
+    <option value="" disabled selected hidden>Choose Role</option>
+        <option value="ADMIN">Admin</option>
+        <option value="ORGANIZER">Organizer</option>
+      </select> 
+
+    </div> 
+      <button type="submit">Register</button>
+    </form>
+  <p *ngIf="successMessage" style="color:green">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+  <p>Already have an account? <a routerLink="/login">Login here</a></p>
+</div>
+  
+</body>

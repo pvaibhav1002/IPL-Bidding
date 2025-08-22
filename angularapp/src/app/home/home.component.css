@@ -1,19 +1,22 @@
+
+
 .home {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 60px); /* subtract navbar height */
-  background: linear-gradient(135deg, #f5f7fa, #e6ecf5);
+  /* min-height: calc(100vh - 60px); subtract navbar height */
+    background: linear-gradient(45deg, #001f3f, #00c3ff,#001f3f);
   padding: 40px 20px;
   text-align: center;
+  height: 81vh;
 }
 
 .home-content {
   max-width: 600px;
-  background: white;
+  background: rgb(232, 232, 232);
   padding: 40px 30px;
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  box-shadow: 5px 5px 20px rgba(195, 194, 194, 0.6);
 }
 
 .home h1 {

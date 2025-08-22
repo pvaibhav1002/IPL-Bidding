@@ -1,0 +1,161 @@
+/* Body Background */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #001f3f, #00c3ff);
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main container */
+.container {
+    width: 380px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.6);
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+/* Heading */
+.container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #00c3ff;
+}
+
+/* Form fields */
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    width: 92%;
+    padding: 12px 14px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.form-group input:focus {
+    border: 2px solid #00c3ff;
+}
+
+/* Floating Labels */
+.form-group label {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: #ffffff;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-right: 5px;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus+label,
+.form-group input:valid+label,
+.form-group select:focus ~ label,
+.form-group select:valid ~ label  {
+    top: -10px;
+    font-size: 12px;
+    color: #00c3ff;
+    background: #080e15;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Dropdown (dark theme) */
+select {
+    width: 100%;
+    padding: 12px 14px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #444;
+    cursor: pointer;
+    border-radius: 6px;
+
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'7'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200l5%207%205-7'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+    background-position: right 10px top 50%;
+    background-repeat: no-repeat;
+    outline: none;
+    font-size: 15px;
+    transition: border 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+
+/* Hover / focus */
+select:focus 
+select:hover{
+  border-color: #00c3ff;
+  box-shadow: 0 0 6px rgba(0, 195, 255, 0.5);
+}
+
+/* Dropdown options */
+select option {
+  background: #0d1b2a;
+  color: #fff;
+  padding: 10px;
+  font-size: 15px;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #00c3ff, #0077b6);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 30px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0077b6, #00c3ff);
+}
+
+/* Links */
+a {
+    color: #00c3ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error + Success */
+.error-message {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+p[style*="color:green"] {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+p[style*="color:red"] {
+    margin-top: 10px;
+    font-weight: 500;
+}

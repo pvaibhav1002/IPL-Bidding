@@ -1,5 +1,9 @@
-<div class="">
-  <h2 class="">{{error.status}}</h2>
-  <p>Oops! Something went wrong.</p>
-  <p>{{error.message}}</p>
+<div class="error-container">
+    <h2 class="error-status">{{ error.status }}</h2>
+    <p class="error-text">Oops! Something went wrong.</p>
+    <p class="error-message">{{ error.message }}</p>
+
+    <p class="redirect-msg">
+        Redirecting to <a [routerLink]="['/']">home</a> in {{ countdown }} seconds...
+    </p>
 </div>

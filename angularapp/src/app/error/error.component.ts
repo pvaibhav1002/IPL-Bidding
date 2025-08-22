@@ -7,14 +7,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
-  @Input() error?={status:"404 NOT FOUND",message:"We can’t find that page. Please check the URL or return to the homepage!"};
-  constructor(private router: Router) { }
+  @Input() error?= { 
+    status: "404 NOT FOUND", 
+    message: "We can't find that page. Please check the URL or return to the homepage!" 
+  };
+
+  countdown: number = 5; 
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const nav = this.router.getCurrentNavigation();
-    if (nav?.extras.state?.['error']) {
-      this.error = nav.extras.state['error'];
-    }
+
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.goHome();
+      }
+    }, 1000);
   }
 
+  goHome(): void {
+    this.router.navigate(['/']);
+  }
 }

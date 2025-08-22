@@ -45,6 +45,15 @@ export class OrganizerComponent implements OnInit {
     this.getPlayerListInTeam(teamid);
   }
 
+  getPlayerListInTeam(teamid: number) {
+    console.log("here");
+    this.organizerService.getPlayerListInTeam(teamid).subscribe(players => {
+      this.teams = this.teams.map(t =>
+        t.id === teamid ? { ...t, players: players ?? [] } : t
+      );
+    });
+  }
+
   assignPlayerToTeam(playerid: number, teamid: number | null): void {
     if (!teamid) return;
     this.organizerService.assignPlayerToTeam({ playerid, teamid }).subscribe(() => {
@@ -53,21 +62,11 @@ export class OrganizerComponent implements OnInit {
     });
   }
 
-  getPlayerListInTeam(teamid: number) {
-    console.log("here");
-    this.organizerService.getPlayerListInTeam(teamid).subscribe(players => {
-      this.teams=this.teams.map(t =>
-         t.id === teamid ? { ...t, players: players ?? [] } : t
-      );
-    });
-  }
-
-
   releasePlayerFromTeam(playerid: number, teamid: number): void {
     this.organizerService.releasePlayerFromTeam(playerid).subscribe(() => {
-      this.teams.forEach(team=>{
-        if(team.id===teamid){
-          team.players= team.players.filter(p=>p.id!=playerid);
+      this.teams.forEach(team => {
+        if (team.id === teamid) {
+          team.players = team.players.filter(p => p.id != playerid);
         }
       })
       this.loadUnsoldPlayers();

@@ -1,9 +1,9 @@
 <nav class="navbar">
-    <div class="logo">IPL Bidding App</div>
+    <div routerLink="/" class="logo">IPL Bidding App</div>
     <div class="links">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-        <a routerLink="/signup" routerLinkActive="active">Register</a>
-        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a *ngIf="!isLoggedin" routerLink="/signup" routerLinkActive="active">Register</a>
+        <a *ngIf="!isLoggedin" routerLink="/login" routerLinkActive="active">Login</a>
         <a *ngIf="isAdmin" routerLink="/admin" routerLinkActive="active">Admin</a>
         <a *ngIf="isOrganizer" routerLink="/organizer" routerLinkActive="active">Organizer</a>
         <a *ngIf="isLoggedin" (click)="logout()" class="logout">Logout</a>
