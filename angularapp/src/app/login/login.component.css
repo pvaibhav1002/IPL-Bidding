@@ -1,16 +1,12 @@
-/* Body Background */
 body {
     margin: 0;
     background: linear-gradient(135deg, #001f3f, #00c3ff);
     height: 92vh;
-    font-family: 'Montserrat', sans-serif;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Main container */
 .container {
     width: 380px;
     background: rgba(0, 0, 0, 0.8);
@@ -22,7 +18,6 @@ body {
     position: relative;
 }
 
-/* Heading */
 .container h2 {
     margin-bottom: 20px;
     font-size: 24px;
@@ -30,7 +25,6 @@ body {
     color: #00c3ff;
 }
 
-/* Form fields */
 .form-group {
     position: relative;
     margin-bottom: 25px;
@@ -52,7 +46,6 @@ body {
     border: 2px solid #00c3ff;
 }
 
-/* Floating Labels */
 .form-group label {
     position: absolute;
     left: 10px;
@@ -76,7 +69,6 @@ body {
 }
 
 
-/* Buttons */
 button {
     width: 100%;
     padding: 12px;
@@ -95,7 +87,6 @@ button:hover {
     background: linear-gradient(90deg, #0077b6, #00c3ff);
 }
 
-/* Links */
 a {
     color: #00c3ff;
     text-decoration: none;
@@ -106,7 +97,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Error + Success */
 .error-message {
     text-align: left;
     font-size: 12px;

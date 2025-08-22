@@ -1,30 +1,7 @@
-<h2>Team List</h2>
-<ul>
-    <li *ngFor="let team of teams">
-        {{ team.name }} (Budget: {{ team.maximumBudget }})
-        <button (click)="onEditTeam(team)">Edit</button>
-        <button (click)="onDeleteTeam(team.id)">Delete</button>
-    </li>
-    
-</ul>
-
-<form *ngIf="editedTeam" #teamForm="ngForm">
-    <input type="text" [(ngModel)]="editedTeam.name" placeholder="Team Name" name="teamName">
-    <input type="number" [(ngModel)]="editedTeam.maximumBudget" placeholder="Maximum Budget" name="teamBudget">
-    <button type="button" [disabled]="editedTeam.invalid" (click)="onSaveEditedTeam()">Save Update</button>
-    <button type="button" (click)="onCancelEditTeam()">Cancel Update</button>
-</form>
-<form *ngIf="!editedTeam" #teamForm="ngForm">
-    <input type="text" [(ngModel)]="newTeam.name" placeholder="Team Name" name="teamName">
-    <input type="number" [(ngModel)]="newTeam.maximumBudget" placeholder="Maximum Budget" name="teamBudget">
-    <button type="button" [disabled]="teamForm.invalid" (click)="createTeam()">Create</button>
-</form>
-
-<p *ngIf="teamSuccessMessage">{{teamSuccessMessage}}</p>
-
-<!-- <div class="team-container">
+<div class="team-container">
   <h2>Team List</h2>
 
+  <!-- Full-width team list -->
   <ul class="team-list">
     <li *ngFor="let team of teams">
       <span class="team-name">{{ team.name }}</span>
@@ -36,27 +13,41 @@
     </li>
   </ul>
 
+  <!-- Create / Edit Form -->
   <div class="team-form">
     <h3 *ngIf="editedTeam">Edit Team</h3>
     <h3 *ngIf="!editedTeam">Create Team</h3>
 
     <form #teamForm="ngForm">
-      <div class="form-group">
-        <input type="text" [(ngModel)]="editedTeam?.name || newTeam.name" 
-               placeholder="Team Name" name="teamName" required>
-      </div>
-      <div class="form-group">
-        <input type="number" [(ngModel)]="editedTeam?.maximumBudget || newTeam.maximumBudget" 
-               placeholder="Maximum Budget" name="teamBudget" required>
-      </div>
+      <form *ngIf="editedTeam" #teamForm="ngForm">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="editedTeam.name" placeholder="Team Name" name="teamName">
+        </div>
+        <div class="form-group">
+          <input type="number" [(ngModel)]="editedTeam.maximumBudget" placeholder="Maximum Budget" name="teamBudget">
+        </div>
+      </form>
+
+      <form *ngIf="!editedTeam" #teamForm="ngForm">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="newTeam.name" placeholder="Team Name" name="teamName">
+
+        </div>
+        <div class="form-group">
+          <input type="number" [(ngModel)]="newTeam.maximumBudget" placeholder="Maximum Budget" name="teamBudget">
+
+        </div>
+      </form>
 
       <div class="form-actions">
-        <button *ngIf="!editedTeam" type="button" [disabled]="teamForm.invalid" (click)="createTeam()">+ Create Team</button>
-        <button *ngIf="editedTeam" type="button" [disabled]="teamForm.invalid" (click)="onSaveEditedTeam()">Save Update</button>
+        <button *ngIf="!editedTeam" type="button" [disabled]="teamForm.invalid" (click)="createTeam()">+ Create
+          Team</button>
+        <button *ngIf="editedTeam" type="button" [disabled]="teamForm.invalid" (click)="onSaveEditedTeam()">Save
+          Update</button>
         <button *ngIf="editedTeam" type="button" (click)="onCancelEditTeam()">Cancel</button>
       </div>
     </form>
   </div>
 
   <p *ngIf="teamSuccessMessage" class="success-message">{{teamSuccessMessage}}</p>
-</div> -->
+</div>

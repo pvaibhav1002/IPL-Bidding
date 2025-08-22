@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from 'src/models/user.model';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 
 export const AUTHENTICATED_USER = 'authenticatedUser';
@@ -16,14 +16,18 @@ export const ROLE = 'role';
   providedIn: 'root'
 })
 export class AuthService {
-  public baseUrl = 'http://localhost:8080/api';
+  public baseUrl = 'https://8080-bebdfbbaeec330669142edeccfaaefdone.premiumproject.examly.io/api';
   private roleSubject = new BehaviorSubject<string | null>(localStorage.getItem(ROLE));
   role$ = this.roleSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
   register(username: string, password: string, role: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/user/register`, { username, password, role });
+    return this.http.post(`${this.baseUrl}/user/register`, { username, password, role }).pipe(
+      catchError((error)=>{
+        return throwError(()=>error);
+      })
+    );
   }
 
   login(username: string, password: string): Observable<User> {

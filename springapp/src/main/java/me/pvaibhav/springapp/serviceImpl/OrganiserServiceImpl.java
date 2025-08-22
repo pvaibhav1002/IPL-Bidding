@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import me.pvaibhav.springapp.entity.Player;
 import me.pvaibhav.springapp.entity.Team;
+import me.pvaibhav.springapp.exception.ExceedsTeamBudgetException;
 import me.pvaibhav.springapp.exception.PlayerAlreadyAssignedException;
 import me.pvaibhav.springapp.repository.PlayerRepo;
 import me.pvaibhav.springapp.repository.TeamRepo;
@@ -34,7 +35,11 @@ public class OrganiserServiceImpl implements OrganizerService {
         if (player.isSold() && player.getTeam() != null) {
             throw new PlayerAlreadyAssignedException("Player already assigned to a team");
         }
+        if (team.getMaximumBudget()<player.getBiddingPrice()) {
+            throw new ExceedsTeamBudgetException("Exceeds Team Budget");
+        }
         team.getPlayers().add(player);
+        team.setMaximumBudget(team.getMaximumBudget()-player.getBiddingPrice());
         Team newTeam = teamRepo.save(team);
         player.setTeam(newTeam);
         player.setSold(true);
@@ -70,6 +75,7 @@ public class OrganiserServiceImpl implements OrganizerService {
         }
         Team team = teamRepo.findById(player.getTeam().getId()).get();
         team.getPlayers().remove(player);
+        team.setMaximumBudget(team.getMaximumBudget()+player.getBiddingPrice());
         teamRepo.save(team);
         player.setTeam(null);
         player.setSold(false);

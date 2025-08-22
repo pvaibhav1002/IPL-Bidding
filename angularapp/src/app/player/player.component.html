@@ -1,7 +1,6 @@
 <div class="player-container">
     <h2>Player List</h2>
   
-    <!-- Full-width player list -->
     <ul class="player-list">
       <li *ngFor="let p of players">
         <div class="player-info">
@@ -17,7 +16,6 @@
       </li>
     </ul>
   
-    <!-- Edit Form -->
     <div *ngIf="editedPlayer" class="player-form">
       <h3>Edit Player</h3>
       <form #playerEditForm="ngForm" (ngSubmit)="onSaveEditedPlayer()">
@@ -42,7 +40,6 @@
       </form>
     </div>
   
-    <!-- Create Form -->
     <div *ngIf="!editedPlayer" class="player-form">
       <h3>Create New Player</h3>
       <form #playerForm="ngForm" (ngSubmit)="createPlayer()">
@@ -57,9 +54,7 @@
         </div>
         <div class="form-group">
           <input type="number" name="playerPrice" [(ngModel)]="newPlayer.biddingPrice" placeholder="Bidding Price" required />
-        </div>
-        <!-- <div class="price-status">Bidding Price Status: {{ biddingPriceStatus() }}</div> -->
-  
+        </div>  
         <div class="form-actions">
           <button [disabled]="playerForm.invalid" type="submit">+ Create Player</button>
         </div>

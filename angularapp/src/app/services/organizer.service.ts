@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Player } from 'src/models/player.model';
 import { Team } from 'src/models/team.model';
 
@@ -8,7 +9,7 @@ import { Team } from 'src/models/team.model';
   providedIn: 'root'
 })
 export class OrganizerService {
-  public baseUrl = 'http://localhost:8080/api';
+  public baseUrl = 'https://8080-bebdfbbaeec330669142edeccfaaefdone.premiumproject.examly.io/api';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,11 @@ export class OrganizerService {
     return this.http.get<Team[]>(`${this.baseUrl}/team`);
   }
   assignPlayerToTeam(assign: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/organizer/assign-player?playerId=${assign.playerid}&teamId=${assign.teamid}`, {});
+    return this.http.post(`${this.baseUrl}/organizer/assign-player?playerId=${assign.playerid}&teamId=${assign.teamid}`, {}).pipe(
+      catchError((error:HttpErrorResponse)=>{
+        return throwError(()=>new Error(error.error));
+      })
+    );
   }
   releasePlayerFromTeam(playerid: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/organizer/release-player/${playerid}`, {});

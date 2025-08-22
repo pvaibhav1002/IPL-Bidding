@@ -1,81 +1,83 @@
 * {
-  transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
+
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px;
-  background: #1a1a1a;
-  color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: #1a1a1a;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Logo */
 .logo {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
 }
 
 
 /* Links container */
 .links {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .links a {
-  position: relative;
-  text-decoration: none;
-  color: #ddd;
-  font-size: 16px;
-  padding: 2px 0;
-  transition: color 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    color: #ddd;
+    font-size: 16px;
+    padding: 2px 0;
+    transition: color 0.3s ease;
 }
 
 .links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background: #00c3ff;
-  transition: width 0.3s ease;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: #00c3ff;
+    transition: width 0.3s ease;
 }
 
 .links a:hover {
-  color: #00c3ff;
+    color: #00c3ff;
 }
 
 .links a:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
 /* Active link */
 .active {
-  color: #00c3ff;
-  border-bottom: 3px solid #00c3ff;
-  padding-bottom: 2px;
+    color: #00c3ff;
+    border-bottom: 3px solid #00c3ff;
+    padding-bottom: 2px;
 }
 
 /* Logout special style */
 .logout {
-  cursor: pointer;
-  color: #ff6666 !important;
+    cursor: pointer;
+    color: #ff6666 !important;
 }
+
 .logout:hover {
-  color: #ff4444 !important;
+    color: #ff4444 !important;
 }

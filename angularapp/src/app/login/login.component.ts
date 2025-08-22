@@ -18,19 +18,23 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(res => {
-      if (!res) {
-        this.errorMessage = "Invalid credentials or role mismatch.";
+    this.authService.login(this.username, this.password).subscribe({
+      next: (res) => {
+        if (res.role == 'ADMIN') {
+          this.router.navigate(['/admin']);
+        }
+        else if (res.role == 'ORGANIZER')
+          this.router.navigate(['/organizer']);
+        else
+          this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.errorMessage = "Invalid credentials";
         return;
       }
-      if (res.role == 'ADMIN') {
-        this.router.navigate(['/admin']);
-      }
-      else if (res.role == 'ORGANIZER')
-        this.router.navigate(['/organizer']);
-      else
-        this.router.navigate(['/']);
-    });
+    }
+
+    );
   }
 
   ngOnInit(): void {

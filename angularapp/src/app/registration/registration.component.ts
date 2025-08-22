@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  registrtion:NgForm;
+  registrtion: NgForm;
   username = '';
   password = '';
   role = '';
@@ -18,14 +18,24 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  register(form:NgForm) {
-    if (form.invalid) {
-      this.errorMessage="Username & Password is required."
+  register(form: NgForm) {
+    if (form.invalid ) {
+      this.errorMessage = "Username & Password is required."
       return;
     }
-    this.authService.register(this.username, this.password, this.role).subscribe((res) => {
-      this.successMessage = 'Registration successful!';
-      setTimeout(() => this.router.navigate(['/login']), 1500);
+    if(this.role==''){
+      this.errorMessage = "Role is required."
+      return;
+    }
+    this.authService.register(this.username, this.password, this.role).subscribe({
+      next: (res) => {
+        this.successMessage = 'Registration successful!';
+        setTimeout(() => this.router.navigate(['/login']), 3000);
+      },
+      error: (err) => {
+        this.errorMessage = "Registration failed";
+        setTimeout(() => this.errorMessage = "", 3000);
+      }
     });
   }
 

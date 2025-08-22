@@ -1,42 +1,49 @@
-<h1 class="">Organizer Panel</h1>
-<section class="">
-    <h2 class="">Unsold Players</h2>
-    <div class="">
-        <label class="">Filter by Category:</label>
-        <select class="" [(ngModel)]="selectedCategory">
+<body>
+
+  <div class="organizer-panel">
+    <h1>Organizer Panel</h1>
+
+    <section>
+      <div class="unsold-header">
+        <h2>Unsold Players</h2>
+        <div>
+          <label>Filter by Category:</label>
+          <select [(ngModel)]="selectedCategory">
             <option *ngFor="let c of categories" [ngValue]="c">{{ c }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngFor="let p of filterByCategory()" class="unsold-player">
+        <span>{{ p.name }} (Age: {{ p.age }}) - Category: {{ p.category }} - Bidding Price: {{p.biddingPrice}}</span>
+        <select [(ngModel)]="p.selectedTeamId">
+          <option [ngValue]="null">Select Team</option>
+          <option *ngFor="let t of teams" [ngValue]="t.id">{{ t.name }}</option>
         </select>
-    </div>
+        <button (click)="assignPlayerToTeam(p.id, p.selectedTeamId)">Assign</button>
+      </div>
+      <p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+    </section>
 
-    <div *ngFor="let p of filterByCategory()" class="">
-        {{ p.name }} (Age: {{ p.age }}) - Category: {{ p.category }}
-        <select class="" [(ngModel)]="p.selectedTeamId">
-            <option [ngValue]="null">Select Team</option>
-            <option *ngFor="let t of teams" [ngValue]="t.id">{{ t.name }}</option>
-        </select>
-        <button (click)="assignPlayerToTeam(p.id, p.selectedTeamId)">
-            Assign to Team
-        </button>
-    </div>
-</section>
+    <section>
+      <h2>Team List</h2>
+      <ol>
+        <li *ngFor="let t of teams" class="team-card">
+          <span>{{ t.name }} &nbsp;&nbsp;  (Remaining Budget: {{ t.maximumBudget }})</span>
+          <button (click)="togglePlayerList(t.id)">Player List</button>
 
-<section>
-    <h2 class="">Team List</h2>
-    <ol class="">
-        <li *ngFor="let t of teams" class="">
-            <span class="">{{ t.name }} (Budget: {{ t.maximumBudget }})</span>
-            <button class="" (click)="togglePlayerList(t.id)">Player List</button>
-
-            <div *ngIf="showList[t.id]" class="">
-                <div *ngFor="let p of t.players" class="">
-                    <div>Player Name: {{ p.name }}</div>
-                    <div>Bidding Price: {{ p.biddingPrice }}</div>
-                    <button class="" (click)="releasePlayerFromTeam(p.id,t.id)">
-                        Release Player
-                    </button>
-                </div>
-                <div *ngIf="!t.players || t.players.length === 0">No players assigned.</div>
+          <div *ngIf="showList[t.id]" class="team-player-list">
+            <div *ngFor="let p of t.players" class="team-player-row">
+              <div>{{ p.name }}</div>
+              <div>{{ p.biddingPrice }}</div>
+              <div>
+                <button (click)="releasePlayerFromTeam(p.id,t.id)">Release</button>
+              </div>
             </div>
+            <div *ngIf="!t.players || t.players.length === 0">No players assigned.</div>
+          </div>
         </li>
-    </ol>
-</section>
+      </ol>
+    </section>
+  </div>
+</body>

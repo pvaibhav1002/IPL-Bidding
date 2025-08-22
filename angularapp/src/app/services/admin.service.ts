@@ -8,7 +8,7 @@ import { Team } from 'src/models/team.model';
   providedIn: 'root'
 })
 export class AdminService {
-  baseUrl = "http://localhost:8080/api";
+  baseUrl = "https://8080-bebdfbbaeec330669142edeccfaaefdone.premiumproject.examly.io/api";
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,6 @@ export class AdminService {
   getPlayers(): Observable<Player[]> { return this.http.get<Player[]>(`${this.baseUrl}/player`); }
   createPlayer(player: Player): Observable<Player> { return this.http.post<Player>(`${this.baseUrl}/player`, player); }
   updatePlayer(playerid: number, player: Player): Observable<Player> { return this.http.put<Player>(`${this.baseUrl}/player/${playerid}`, player); }
-  deletePlayer(playerid: number): Observable<boolean> { return this.http.delete<boolean>(`${this.baseUrl}/player/${playerid}`,{ responseType: 'json' as const }); }
+  deletePlayer(playerid: number): Observable<boolean> { return this.http.delete<boolean>(`${this.baseUrl}/player/${playerid}`); }
 
 }

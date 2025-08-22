@@ -1,7 +1,7 @@
+
 /* Body Background */
 body {
     margin: 0;
-    font-family: "Poppins", sans-serif;
     background: linear-gradient(135deg, #001f3f, #00c3ff);
     height: 92vh;
     display: flex;
@@ -91,7 +91,7 @@ select {
     background-position: right 10px top 50%;
     background-repeat: no-repeat;
     outline: none;
-    font-size: 15px;
+    font-size: 0.9em;
     transition: border 0.3s, box-shadow 0.3s;
     margin-bottom: 20px;
     padding-right: 30px;
@@ -107,10 +107,9 @@ select:hover{
 
 /* Dropdown options */
 select option {
-  background: #0d1b2a;
-  color: #fff;
-  padding: 10px;
-  font-size: 15px;
+  background: #00c3ff;
+  color: #000000;
+
 }
 
 /* Buttons */

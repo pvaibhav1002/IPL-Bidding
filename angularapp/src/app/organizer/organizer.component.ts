@@ -15,6 +15,7 @@ export class OrganizerComponent implements OnInit {
   selectedCategory: string = 'All';
   selectedTeamid: number | null = null;
   showList: { [key: number]: boolean } = {};
+  errorMessage="";
   constructor(private organizerService: OrganizerService) { }
 
   ngOnInit(): void {
@@ -56,9 +57,20 @@ export class OrganizerComponent implements OnInit {
 
   assignPlayerToTeam(playerid: number, teamid: number | null): void {
     if (!teamid) return;
-    this.organizerService.assignPlayerToTeam({ playerid, teamid }).subscribe(() => {
-      this.unsoldPlayers = this.unsoldPlayers.filter(p => p.id !== playerid);
-      this.getPlayerListInTeam(teamid);
+
+    this.organizerService.assignPlayerToTeam({ playerid, teamid }).subscribe({
+      next: () => {
+        this.unsoldPlayers = this.unsoldPlayers.filter(p => p.id !== playerid);
+        this.loadTeams();
+        this.getPlayerListInTeam(teamid);
+      },
+      error: (err) => {
+        console.error('Error assigning player:', err);
+        this.errorMessage = err.error || 'Something went wrong while assigning the player.';
+        setTimeout(()=>{
+          this.errorMessage="";
+        },2000)
+      }
     });
   }
 
@@ -66,6 +78,11 @@ export class OrganizerComponent implements OnInit {
     this.organizerService.releasePlayerFromTeam(playerid).subscribe(() => {
       this.teams.forEach(team => {
         if (team.id === teamid) {
+          team.players.forEach(player=>{
+            if (player.id===playerid) {
+              team.maximumBudget+=player.biddingPrice;
+            }
+          })
           team.players = team.players.filter(p => p.id != playerid);
         }
       })

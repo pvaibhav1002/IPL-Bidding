@@ -92,11 +92,8 @@ export class AdminComponent implements OnInit {
     this.editedPlayer = null;
   }
   deletePlayer(playerid: number) {
-    console.log(playerid);
     this.adminService.deletePlayer(playerid).subscribe(data => {
-      console.log(data);
       if (data) {
-        console.log(true);
         this.playerSuccessMessage = "Player deleted successfully";
         this.getPlayers();
       }
