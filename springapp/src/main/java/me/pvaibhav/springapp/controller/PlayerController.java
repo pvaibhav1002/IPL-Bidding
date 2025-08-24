@@ -41,7 +41,7 @@ public class PlayerController {
     public ResponseEntity<List<Player>> getAllPlayers() {
         List<Player> players = playerService.getAllPlayer();
         if (players.isEmpty()) {
-            return ResponseEntity.status(400).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(players);
     }
@@ -50,7 +50,7 @@ public class PlayerController {
     public ResponseEntity<Player> getPlayer(@PathVariable long playerId) {
         Player newPlayer = playerService.getPlayerById(playerId);
         if (newPlayer==null) {
-            return ResponseEntity.status(400).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(201).body(newPlayer);
     }
@@ -58,7 +58,7 @@ public class PlayerController {
     public ResponseEntity<Boolean> deletePlayer(@PathVariable long playerId) {
         boolean delete=playerService.deletePlayer(playerId);
         if (!delete) {
-            return ResponseEntity.status(400).body(false);
+            return ResponseEntity.status(204).body(false);
         }
         System.out.println(delete);
         return ResponseEntity.status(200).body(true);

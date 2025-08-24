@@ -40,7 +40,7 @@ public class TeamController {
     public ResponseEntity<Team> updateTeam(@PathVariable long teamId, @RequestBody Team team) {
         Team newTeam = teamService.updateTeam(teamId, team);
         if (newTeam == null) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(201).body(newTeam);
     }
@@ -49,7 +49,7 @@ public class TeamController {
     public ResponseEntity<List<Team>> getAllTeam() {
         List<Team> teams = teamService.getAllTeams();
         if (teams.isEmpty()) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(teams);
     }
@@ -58,7 +58,7 @@ public class TeamController {
     public ResponseEntity<Team> getTeamById(@PathVariable long teamId) {
         Team newTeam = teamService.getTeamById(teamId);
         if (newTeam == null) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(newTeam);
     }
@@ -67,7 +67,7 @@ public class TeamController {
     public ResponseEntity<Boolean> deleteTeam(@PathVariable long teamId) {
         
         if (!teamService.deleteTeam(teamId)) {
-            return ResponseEntity.status(404).body(false);
+            return ResponseEntity.status(204).body(false);
         }
         return ResponseEntity.status(200).body(true);
     }

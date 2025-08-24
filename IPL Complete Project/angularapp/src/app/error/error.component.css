@@ -1,0 +1,50 @@
+/* Error Page Container */
+.error-container {
+    height: 87vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #001f3f;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    padding: 20px;
+}
+
+
+
+/* Status Code */
+.error-status {
+    font-size: 60px;
+    font-weight: 700;
+    color: #ff4c4c;
+    margin-bottom: 15px;
+    /* text-shadow: 0 0 10px rgba(255, 76, 76, 0.8); */
+}
+
+/* Subtext */
+.error-text {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 16px;
+    color: #ddd;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+
+.redirect-msg {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #ffdf91;
+    font-weight: 500;
+}
+
+.redirect-msg>a {
+    color: #00c3ff;
+}

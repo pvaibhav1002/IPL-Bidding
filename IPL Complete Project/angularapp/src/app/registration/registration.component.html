@@ -1,0 +1,43 @@
+<body>
+    <div class="container">
+      <h2>Register</h2>
+      <form #registration="ngForm" (ngSubmit)="register(registration)" >
+        <div class="form-group">
+          <input type="text" [(ngModel)]="username" name="username" id="username"
+          #usernameField="ngModel" required>
+          <label>Username</label> 
+          <div class="error-message" *ngIf="usernameField.invalid && (usernameField.touched || usernameField.dirty)"
+          style="color:red">
+          <div *ngIf="usernameField.errors?.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" [(ngModel)]="password" name="password" id="password"
+        #passwordField="ngModel" required>
+        <label>Password</label> 
+        <div class="error-message" *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)"
+        style="color:red">
+        <div *ngIf="passwordField.errors?.required">Password is required</div>
+      </div>
+    </div>
+    <div class="form-group"> 
+
+      <select [(ngModel)]="role" #roleField="ngModel" name="role">
+        <option value="" disabled selected hidden>Choose Role</option>
+            <option value="ADMIN">Admin</option>
+            <option value="ORGANIZER">Organizer</option>
+          </select> 
+          <div class="error-message" *ngIf="(role=='') && roleField.invalid && (roleField.touched || roleField.dirty)"
+        style="color:red">
+        <div *ngIf="role.errors?.required">Role is required</div>
+      </div>
+    
+        </div> 
+          <button type="submit">Register</button>
+        </form>
+      <p *ngIf="successMessage" style="color:green">{{ successMessage }}</p>
+      <p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+      <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    </div>
+      
+</body>

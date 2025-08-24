@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             return userRepo.save(user);
         }
-        return null;
+        throw new RuntimeException("User Already Exists.");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             returnUser.setToken(token);
             return returnUser;
         }
-        return null;
+        throw new RuntimeException("Invalid Credentials");
 
     }
 

@@ -1,0 +1,129 @@
+body{
+  height: 100vh;
+  background: rgb(0, 0, 0);
+}
+
+.organizer-panel {
+  background: rgba(0, 0, 0, 0.892);
+  padding: 25px;
+
+  color: #fff;
+}
+
+/* Headings */
+.organizer-panel h1,
+.organizer-panel h2 {
+  color: #00c3ff;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Unsold Section: Filter + Title Row */
+.unsold-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Category Filter */
+.unsold-header label {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.unsold-header select {
+  padding: 8px 14px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #15293e;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.unsold-header select:focus {
+  border-color: #00c3ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 195, 255, 0.5);
+}
+
+/* Unsold Player Cards */
+.unsold-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d1b2a;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Player + Assign to Team */
+.unsold-player select {
+  margin: 0 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #15293e;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+/* Team List */
+.team-card {
+  background: #0d1b2a;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+}
+
+.team-card span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #00c3ff;
+}
+
+/* Team Player List - Table Style */
+.team-player-list {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.team-player-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #15293e;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
+
+.team-player-row div {
+  flex: 1;
+  font-size: 14px;
+}
+
+.team-player-row div:first-child {
+  font-weight: 500;
+  color: #00c3ff;
+}
+
+/* Buttons */
+button {
+  padding: 7px 14px;
+  background: linear-gradient(90deg, #00c3ff, #0077b6);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-left: 10px;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #0077b6, #00c3ff);
+}

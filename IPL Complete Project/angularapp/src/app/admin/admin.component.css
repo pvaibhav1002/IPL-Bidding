@@ -1,0 +1,17 @@
+div {
+    width: calc(100-3.5)vw;
+    height: 100vw;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 25px rgba(0, 195, 255, 0.5);
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+}
+
+div h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #00c3ff;
+}

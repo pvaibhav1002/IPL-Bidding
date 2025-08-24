@@ -32,7 +32,7 @@ public class OrganizerController {
     public ResponseEntity<List<Player>> getUnsoldPlayers() {
         List<Player> players = organizerService.getUnsoldPlayers();
         if (players.isEmpty()) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(players);
     }
@@ -41,7 +41,7 @@ public class OrganizerController {
     public ResponseEntity<List<Player>> getSoldPlayers() {
         List<Player> players = organizerService.getSoldPlayers();
         if (players.isEmpty()) {
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(players);
 
@@ -59,7 +59,7 @@ public class OrganizerController {
     public ResponseEntity<List<Player>> getPlayerList(@PathVariable long teamId) {
         List<Player> players = organizerService.getPlayerListByTeamId(teamId);
         if (players.isEmpty()) {
-            return ResponseEntity.status(500).build();
+            return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(201).body(players);
     }
